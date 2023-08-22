@@ -6,15 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 
-public class Salesforce {
+public class SalesforceSalesChatter {
 	
 	WebDriver driver;
 	ChromeOptions Coptions;
@@ -40,13 +38,19 @@ public class Salesforce {
         WebElement menu = driver.findElement(By.cssSelector(".slds-icon-waffle"));
         menu.click();
         driver.findElement(By.xpath("//lightning-button")).click();
-        driver.findElement(By.xpath("//input[@part='input']")).sendKeys("accounts");
-        WebElement accLink = driver.findElement(By.xpath("//one-app-launcher-tab-item/a[@data-label='Accounts']"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();",accLink);
-		driver.findElement(By.xpath("//div[@title='New']")).click();
-		driver.findElement(By.xpath("//input[@name='Name']")).sendKeys("Account name");
-		driver.findElement(By.xpath("//lightning-button/button[@name='SaveEdit']")).click();
+        driver.findElement(By.xpath("//input[@part='input']")).sendKeys("Content");
+        WebElement dashLink = driver.findElement(By.xpath("//div[@data-name='Content']"));
+		dashLink.click();
+		WebElement campLink = driver.findElement(By.xpath("//a[@title='Chatter']"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();",campLink);
+		driver.findElement(By.xpath("//span[text()='Question']")).click();
+		String currentTitle  = driver.getTitle();
+		System.out.println(currentTitle);
+		driver.findElement(By.xpath("//label/span[contains(text(),'Question')]//parent::label//following-sibling::textarea")).sendKeys("This is my question");
+		driver.findElement(By.xpath("//div[@id='outerContainer']//span[text()='Details']//parent::span//following-sibling::div//p")).sendKeys("This is my details");
+		//driver.findElement(By.xpath("//label/span[text()='End Date']//parent::label//following-sibling::div/input")).sendKeys("8/25/2023");
+		driver.findElement(By.xpath("//button[text()='Ask']")).click();
 	}
 
 }

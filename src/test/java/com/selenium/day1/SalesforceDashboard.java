@@ -6,15 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 
-public class Salesforce {
+public class SalesforceDashboard {
 	
 	WebDriver driver;
 	ChromeOptions Coptions;
@@ -40,13 +38,13 @@ public class Salesforce {
         WebElement menu = driver.findElement(By.cssSelector(".slds-icon-waffle"));
         menu.click();
         driver.findElement(By.xpath("//lightning-button")).click();
-        driver.findElement(By.xpath("//input[@part='input']")).sendKeys("accounts");
-        WebElement accLink = driver.findElement(By.xpath("//one-app-launcher-tab-item/a[@data-label='Accounts']"));
+        driver.findElement(By.xpath("//input[@part='input']")).sendKeys("dashboard");
+        WebElement dashLink = driver.findElement(By.xpath("//one-app-launcher-tab-item/a[@data-label='Dashboards']"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();",accLink);
-		driver.findElement(By.xpath("//div[@title='New']")).click();
-		driver.findElement(By.xpath("//input[@name='Name']")).sendKeys("Account name");
-		driver.findElement(By.xpath("//lightning-button/button[@name='SaveEdit']")).click();
+        js.executeScript("arguments[0].click();",dashLink);
+		driver.findElement(By.xpath("//div[@title='New Dashboard']")).click();
+		driver.findElement(By.xpath("//input[@id='dashboardNameInput']")).sendKeys("Salesforce Automation by Pragadeeswaran");
+		driver.findElement(By.xpath("//div[@id='main']//button[contains(@class,'save')]")).click();
 	}
 
 }
