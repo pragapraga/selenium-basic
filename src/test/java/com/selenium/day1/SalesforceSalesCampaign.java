@@ -6,10 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class SalesforceSalesCampaign {
@@ -47,9 +50,16 @@ public class SalesforceSalesCampaign {
 		js.executeScript("arguments[0].click();",campLink);
 		driver.findElement(By.xpath("//div[@title='New']")).click();
 		driver.findElement(By.xpath("//label/span[text()='Campaign Name']//parent::label//following-sibling::input")).sendKeys("Bootcamp_Praga");
-		driver.findElement(By.xpath("//label/span[text()='Start Date']//parent::label//following-sibling::div/input")).sendKeys("8/24/2023");
-		driver.findElement(By.xpath("//label/span[text()='End Date']//parent::label//following-sibling::div/input")).sendKeys("8/25/2023");
+
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		LocalDateTime ldt = LocalDateTime.now();
+		driver.findElement(By.xpath("//label/span[text()='Start Date']//parent::label//following-sibling::div/input")).sendKeys(ldt.format(format));
+		driver.findElement(By.xpath("//label/span[text()='End Date']//parent::label//following-sibling::div/input")).sendKeys(ldt.plusDays(1).format(format));
 		driver.findElement(By.xpath("//button[@title='Save']")).click();
+	}
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
 	}
 
 }

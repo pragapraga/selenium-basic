@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -45,6 +46,10 @@ public class SalesforceDashboard {
 		driver.findElement(By.xpath("//div[@title='New Dashboard']")).click();
 		driver.findElement(By.xpath("//input[@id='dashboardNameInput']")).sendKeys("Salesforce Automation by Pragadeeswaran");
 		driver.findElement(By.xpath("//div[@id='main']//button[contains(@class,'save')]")).click();
+	}
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
 	}
 
 }

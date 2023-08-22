@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -52,5 +53,8 @@ public class SalesforceSalesChatter {
 		//driver.findElement(By.xpath("//label/span[text()='End Date']//parent::label//following-sibling::div/input")).sendKeys("8/25/2023");
 		driver.findElement(By.xpath("//button[text()='Ask']")).click();
 	}
-
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
+	}
 }
