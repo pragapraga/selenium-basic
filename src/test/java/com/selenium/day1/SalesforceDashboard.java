@@ -14,22 +14,23 @@ import java.time.Duration;
 
 
 public class SalesforceDashboard {
-	
-	WebDriver driver;
-	ChromeOptions Coptions;
-	@BeforeMethod
-	public void setUp() {
-		
-		Coptions = new ChromeOptions().addArguments("--disable-notifications");
-		driver = new ChromeDriver(Coptions);
-		driver.get("https://login.salesforce.com");
-	}
-	
-	@Test
-	public void login() {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		//WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement username = driver.findElement(By.id("username"));
+
+    WebDriver driver;
+    ChromeOptions Coptions;
+
+    @BeforeMethod
+    public void setUp() {
+
+        Coptions = new ChromeOptions().addArguments("--disable-notifications");
+        driver = new ChromeDriver(Coptions);
+        driver.get("https://login.salesforce.com");
+    }
+
+    @Test
+    public void login() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement username = driver.findElement(By.id("username"));
         WebElement password = driver.findElement(By.id("password"));
         WebElement loginButton = driver.findElement(By.id("Login"));
 
@@ -42,14 +43,15 @@ public class SalesforceDashboard {
         driver.findElement(By.xpath("//input[@part='input']")).sendKeys("dashboard");
         WebElement dashLink = driver.findElement(By.xpath("//one-app-launcher-tab-item/a[@data-label='Dashboards']"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();",dashLink);
-		driver.findElement(By.xpath("//div[@title='New Dashboard']")).click();
-		driver.findElement(By.xpath("//input[@id='dashboardNameInput']")).sendKeys("Salesforce Automation by Pragadeeswaran");
-		driver.findElement(By.xpath("//div[@id='main']//button[contains(@class,'save')]")).click();
-	}
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
-	}
+        js.executeScript("arguments[0].click();", dashLink);
+        driver.findElement(By.xpath("//div[@title='New Dashboard']")).click();
+        driver.findElement(By.xpath("//input[@id='dashboardNameInput']")).sendKeys("Salesforce Automation by Pragadeeswaran");
+        driver.findElement(By.xpath("//div[@id='main']//button[contains(@class,'save')]")).click();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
 
 }
