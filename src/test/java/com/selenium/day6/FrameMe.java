@@ -23,14 +23,14 @@ public class FrameMe {
 
     @Test
     public void alertValidate() {
-       driver.switchTo().frame(0);
-       driver.findElement(By.xpath("//button[@id='Click']")).click();
-       driver.switchTo().defaultContent();
-       driver.switchTo().frame(1);
+        driver.switchTo().frame(0);
         driver.findElement(By.xpath("//button[@id='Click']")).click();
         driver.switchTo().defaultContent();
-       driver.switchTo().frame(2);
-       driver.switchTo().frame("frame2");
+        driver.switchTo().frame(1);
+        driver.findElement(By.xpath("//button[@id='Click']")).click();
+        driver.switchTo().defaultContent();
+        driver.switchTo().frame(2);
+        driver.switchTo().frame("frame2");
         driver.findElement(By.xpath("//button[@id='Click']")).click();
     }
 }

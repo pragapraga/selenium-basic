@@ -28,7 +28,7 @@ public class Salesforce {
 	}
 	
 	@Test
-	public void login() {
+	public void loginAndValidate() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		//WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		WebElement username = driver.findElement(By.id("username"));

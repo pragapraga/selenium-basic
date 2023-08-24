@@ -7,6 +7,10 @@ public class CustomerDetails {
     private String joinDate;
     private String status;
 
+    public CustomerDetails(){
+
+    }
+
     public CustomerDetails(String name, String country, String rep, String joinDate, String status) {
         this.name = name;
         this.country = country;

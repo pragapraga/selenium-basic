@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -31,13 +32,24 @@ public class WebTable {
         List<WebElement> allCols = driver.findElements(By.xpath("//div[@class='ui-datatable-scrollable-body']//thead/tr/th/span"));
         List<CustomerDetails> Custlist = new ArrayList<>();
         for (int i = 1; i < allRows.size(); i++) {
-                String name = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[1]")).getText();
-                String country = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[2]")).getText();
-                String rep = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[3]")).getText();
-                String joinDate = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[4]")).getText();
-                String status = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[5]")).getText();
-                Custlist.add(new CustomerDetails(name,country,rep,joinDate,status));
+            CustomerDetails currentCustomer = new CustomerDetails();
+            String name = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[1]")).getText();
+            String country = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[2]")).getText();
+            String rep = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[3]")).getText();
+            String joinDate = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[4]")).getText();
+            String status = driver.findElement(By.xpath("//div[@class='ui-datatable-scrollable-body']/table/tbody/tr[" + i + "]/td[5]")).getText();
+            //Custlist.add(new CustomerDetails(name,country,rep,joinDate,status));
+            currentCustomer.setName(name);
+            currentCustomer.setCountry(country);
+            currentCustomer.setRep(rep);
+            currentCustomer.setJoinDate(joinDate);
+            currentCustomer.setStatus(status);
+            Custlist.add(currentCustomer);
         }
         System.out.println(Custlist);
+    }
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
     }
 }
