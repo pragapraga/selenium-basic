@@ -25,7 +25,7 @@ public class DragAndDrop {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
-    @Test(enabled = false)
+    @Test
     public void draggable() throws InterruptedException {
         driver.get("https://jqueryui.com/draggable/");
         driver.switchTo().frame(0);
@@ -37,7 +37,7 @@ public class DragAndDrop {
         Thread.sleep(3000);
     }
 
-    @Test(enabled = false)
+    @Test
     public void droppable() throws InterruptedException {
         driver.get("https://jqueryui.com/droppable/");
         driver.switchTo().frame(0);
